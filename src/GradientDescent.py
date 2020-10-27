@@ -1,3 +1,5 @@
+import numpy as np
+
 class GradientDescent:
     def __init__(self, momentum = False, learning_rate = 0.01, **kwargs):
         if momentum:
