@@ -1,3 +1,5 @@
+import numpy as np
+
 class Activation:
     def __init__(self,activation):
         self.activation = activation
