@@ -1,5 +1,3 @@
-#************* This class creates different layers in the neural network ****************
-
 class Layer:
     def __init__(self, input_count, neruon_count, activation_func,layer_type):
         self.layer_type = layer_type
