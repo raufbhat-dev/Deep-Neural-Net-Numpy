@@ -97,8 +97,8 @@ print('actual',Y[img_index])
 
 
 img_index=9
-layer1 = Layers[0].w.T[img_index].reshape(8,8)
-layer2 = Layers[0].w.T[img_index].reshape(8,8)
+layer1 = neural_net.layers[0].w.T[img_index].reshape(8,8)
+layer2 = neural_net.layers[0].w.T[img_index].reshape(8,8)
 
 
 plt.gray() 
