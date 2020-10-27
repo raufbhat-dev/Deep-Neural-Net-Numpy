@@ -1,3 +1,5 @@
+import numpy as np
+
 class Loss:
     def __init__(self, loss_func):
         self.loss_func = loss_func
