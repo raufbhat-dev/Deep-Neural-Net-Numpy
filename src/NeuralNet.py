@@ -1,7 +1,11 @@
+import numpy as 
+
+import Layer, Loss, GradientDescent
+
 class NeuralNet:
     def __init__(self, loss_func, optimiser_method, learning_rate, epoch, partition_size, mode, network_arch):
         self.loss_func = loss_func
-        self.optimiser = optimiser_method
+        self.optimiser_method = optimiser_method
         self.epoch_count = epoch
         self.partition_size = partition_size 
         self.learning_rate = learning_rate
@@ -11,7 +15,10 @@ class NeuralNet:
         self.network_arch = network_arch
         if optimiser_method == 'momentum':
             self.momentum = True
-        
+            self.optimiser = GradientDescent(True,self.learning_rate,self.beta)
+        else:
+            self.optimiser = GradientDescent(False,self.learning_rate)
+            
     def createNetwork(self):
         network_layers = []
         for index, layer in  enumerate(self.network_arch):
@@ -42,7 +49,7 @@ class NeuralNet:
                 else:
                     upstream_gradient_w = np.matmul(inputs.T,upstream_gradient)
             upstream_gradient_b = np.sum(upstream_gradient,axis=0).T
-            optimiser(layer, upstream_gradient_w, upstream_gradient_b)
+            self.optimiser(layer, upstream_gradient_w, upstream_gradient_b)
 
         for layer in self.layers:
             layer.w = layer.w + layer.w_delta
