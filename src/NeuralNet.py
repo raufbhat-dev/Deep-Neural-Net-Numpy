@@ -1,4 +1,4 @@
-import numpy as 
+import numpy as np
 
 import Layer, Loss, GradientDescent
 
