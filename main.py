@@ -6,6 +6,15 @@ import sklearn.linear_model
 
 from neuralnetnumpy.neuralnet import NeuralNet
 
+def dataScale(X):
+    mean_ = np.nanmean(X, axis = 0)
+    scale_ = np.nanstd(X, axis = 0)
+    print(scale_.shape)
+    X -= mean_
+    scale_[scale_ == 0.0] = 1.0
+    X /= scale_
+    return X
+
 def predict(Layers,inputs):
     predictions = np.array([])
     for layer in Layers:
@@ -35,6 +44,8 @@ def plot_decision_boundary(pred_func):
 
 X, Y = sklearn.datasets.make_moons(200, noise=0.20) 
 inputs = np.array(X)
+
+inputs = dataScale(inputs)
 
 outputs = np.array(Y).reshape(200,1)
 
@@ -75,6 +86,8 @@ plt.show()
 
 inputs, Y = sklearn.datasets.load_digits( n_class=10, return_X_y=True)
 
+inputs = dataScale(inputs)
+
 outputs = np.zeros((Y.size, Y.max()+1))
 outputs[np.arange(Y.size),Y] = 1
 
@@ -89,7 +102,7 @@ neural_net.createNetwork()
 neural_net.train(inputs, outputs)
 
 
-mode = 'test'
+neural_net.mode = 'test'
 img_index=10
 test_out_sample = neural_net.forwardPass(inputs[img_index], 1)
 
