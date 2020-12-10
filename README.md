@@ -1,2 +1,2 @@
 # Deep-Neural-Net-Numpy
-This code implements the deep neural net using numpy
+This code implements deep neural net using numpy
